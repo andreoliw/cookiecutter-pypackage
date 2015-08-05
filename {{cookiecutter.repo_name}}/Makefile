@@ -5,7 +5,9 @@ help:
 	@echo "clean-build - remove build artifacts"
 	@echo "clean-pyc - remove Python file artifacts"
 	@echo "clean-test - remove test and coverage artifacts"
-	@echo "lint - check style with flake8"
+	@echo "lint - check style with flake8, pep257 and pylint"
+	@echo "lt - lint and test"
+	@echo "ltd - lint, test and docs"
 	@echo "test - run tests quickly with the default Python"
 	@echo "test-all - run tests on every Python version with tox"
 	@echo "coverage - check code coverage quickly with the default Python"
@@ -18,6 +20,7 @@ clean: clean-build clean-pyc clean-test
 
 clean-build:
 	rm -fr build/
+	rm -fr docs/_build/
 	rm -fr dist/
 	rm -fr .eggs/
 	find . -name '*.egg-info' -exec rm -fr {} +
@@ -36,6 +39,12 @@ clean-test:
 
 lint:
 	flake8 {{ cookiecutter.repo_name }} tests
+	pep257 {{ cookiecutter.repo_name }} tests
+	pylint --rcfile=.pylintrc {{ cookiecutter.repo_name }} tests
+
+lt: lint test
+
+ltd: lint test docs
 
 test:
 	python setup.py test
@@ -44,18 +53,17 @@ test-all:
 	tox
 
 coverage:
-	coverage run --source {{ cookiecutter.repo_name }} setup.py test
-	coverage report -m
-	coverage html
-	open htmlcov/index.html
+	py.test --cov={{ cookiecutter.repo_name }} --cov-report=term --cov-report=html
+	xdg-open htmlcov/index.html
 
 docs:
 	rm -f docs/{{ cookiecutter.repo_name }}.rst
 	rm -f docs/modules.rst
+	mkdir -p docs/_static
 	sphinx-apidoc -o docs/ {{ cookiecutter.repo_name }}
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
-	open docs/_build/html/index.html
+	xdg-open docs/_build/html/index.html
 
 release: clean
 	python setup.py sdist upload

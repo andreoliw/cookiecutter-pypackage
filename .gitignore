@@ -43,4 +43,6 @@ docs/_build
 
 # Cookiecutter
 output/
-boilerplate/
+
+# Editors
+.idea/

@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import {{ cookiecutter.repo_name }}
 
 
 try:
-    from setuptools import setup
+    from setuptools import setup, Command
 except ImportError:
-    from distutils.core import setup
+    from distutils.core import setup, Command
 
 
 with open('README.rst') as readme_file:
@@ -14,17 +15,33 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read().replace('.. :changelog:', '')
 
-requirements = [
-    # TODO: put package requirements here
-]
+with open('requirements.txt') as txt_file:
+    lines = txt_file.read()
+requirements = [line for line in lines.split('\n') if '=' in line]
 
-test_requirements = [
-    # TODO: put package test requirements here
-]
+with open('requirements_dev.txt') as txt_file:
+    lines = txt_file.read()
+test_requirements = [line for line in lines.split('\n') if '=' in line]
+test_requirements.extend(requirements)
+
+
+class PyTest(Command):
+    user_options = []
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        import subprocess
+        import sys
+        errno = subprocess.call([sys.executable, 'runtests.py'])
+        raise SystemExit(errno)
 
 setup(
     name='{{ cookiecutter.repo_name }}',
-    version='{{ cookiecutter.version }}',
+    version={{ cookiecutter.repo_name }}.__version__,
     description="{{ cookiecutter.project_short_description }}",
     long_description=readme + '\n\n' + history,
     author="{{ cookiecutter.full_name }}",
@@ -52,6 +69,14 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
     ],
+    cmdclass={'test': PyTest},
     test_suite='tests',
-    tests_require=test_requirements
+    tests_require=test_requirements,
+    entry_points={
+        'console_scripts': [
+            # TODO: Put command line scripts here
+            # 'my-cli-script = {{ cookiecutter.repo_name }}.my_module:MyClass.main',
+            # 'my-other-cli-script = {{ cookiecutter.repo_name }}.another_module:some_function'
+        ],
+    }
 )

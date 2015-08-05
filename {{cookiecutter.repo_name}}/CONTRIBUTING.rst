@@ -108,4 +108,4 @@ Tips
 
 To run a subset of tests::
 
-    $ python -m unittest tests.test_{{ cookiecutter.repo_name }}
+    $ py.test -k {{ cookiecutter.repo_name }}
