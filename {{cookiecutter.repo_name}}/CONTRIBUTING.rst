@@ -55,7 +55,7 @@ If you are proposing a feature:
 Get Started!
 ------------
 
-Ready to contribute? Here's how to set up `{{ cookiecutter.repo_name }}` for local development.
+Ready to contribute? Here's how to set up `{{ cookiecutter.package_name }}` for local development.
 
 1. Fork the `{{ cookiecutter.repo_name }}` repo on GitHub.
 2. Clone your fork locally::
@@ -64,7 +64,7 @@ Ready to contribute? Here's how to set up `{{ cookiecutter.repo_name }}` for loc
 
 3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
 
-    $ mkvirtualenv {{ cookiecutter.repo_name }}
+    $ mkvirtualenv {{ cookiecutter.package_name }}
     $ cd {{ cookiecutter.repo_name }}/
     $ python setup.py develop
 
@@ -76,7 +76,7 @@ Ready to contribute? Here's how to set up `{{ cookiecutter.repo_name }}` for loc
 
 5. When you're done making changes, check that your changes pass flake8 and the tests, including testing other Python versions with tox::
 
-    $ flake8 {{ cookiecutter.repo_name }} tests
+    $ flake8 {{ cookiecutter.package_name }} tests
     $ python setup.py test
     $ tox
 
@@ -108,4 +108,4 @@ Tips
 
 To run a subset of tests::
 
-    $ py.test -k {{ cookiecutter.repo_name }}
+    $ py.test -k {{ cookiecutter.package_name }}

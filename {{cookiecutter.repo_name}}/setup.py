@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import {{ cookiecutter.repo_name }}
+import {{ cookiecutter.package_name }}
 
 
 try:
@@ -40,23 +40,23 @@ class PyTest(Command):
         raise SystemExit(errno)
 
 setup(
-    name='{{ cookiecutter.repo_name }}',
-    version={{ cookiecutter.repo_name }}.__version__,
+    name='{{ cookiecutter.package_name }}',
+    version={{ cookiecutter.package_name }}.__version__,
     description="{{ cookiecutter.project_short_description }}",
     long_description=readme + '\n\n' + history,
     author="{{ cookiecutter.full_name }}",
     author_email='{{ cookiecutter.email }}',
     url='https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.repo_name }}',
     packages=[
-        '{{ cookiecutter.repo_name }}',
+        '{{ cookiecutter.package_name }}',
     ],
-    package_dir={'{{ cookiecutter.repo_name }}':
-                 '{{ cookiecutter.repo_name }}'},
+    package_dir={'{{ cookiecutter.package_name }}':
+                 '{{ cookiecutter.package_name }}'},
     include_package_data=True,
     install_requires=requirements,
     license="BSD",
     zip_safe=False,
-    keywords='{{ cookiecutter.repo_name }}',
+    keywords='{{ cookiecutter.package_name }}',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
@@ -75,8 +75,8 @@ setup(
     entry_points={
         'console_scripts': [
             # TODO: Put command line scripts here
-            # 'my-cli-script = {{ cookiecutter.repo_name }}.my_module:MyClass.main',
-            # 'my-other-cli-script = {{ cookiecutter.repo_name }}.another_module:some_function'
+            # 'my-cli-script = {{ cookiecutter.package_name }}.my_module:MyClass.main',
+            # 'my-other-cli-script = {{ cookiecutter.package_name }}.another_module:some_function'
         ],
     }
 )

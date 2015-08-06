@@ -38,9 +38,9 @@ clean-test:
 	rm -fr htmlcov/
 
 lint:
-	flake8 {{ cookiecutter.repo_name }} tests
-	pep257 {{ cookiecutter.repo_name }} tests
-	pylint --rcfile=.pylintrc {{ cookiecutter.repo_name }} tests
+	flake8 {{ cookiecutter.package_name }} tests
+	pep257 {{ cookiecutter.package_name }} tests
+	pylint --rcfile=.pylintrc {{ cookiecutter.package_name }} tests
 
 lt: lint test
 
@@ -53,14 +53,14 @@ test-all:
 	tox
 
 coverage:
-	py.test --cov={{ cookiecutter.repo_name }} --cov-report=term --cov-report=html
+	py.test --cov={{ cookiecutter.package_name }} --cov-report=term --cov-report=html
 	xdg-open htmlcov/index.html
 
 docs:
-	rm -f docs/{{ cookiecutter.repo_name }}.rst
+	rm -f docs/{{ cookiecutter.package_name }}.rst
 	rm -f docs/modules.rst
 	mkdir -p docs/_static
-	sphinx-apidoc -o docs/ {{ cookiecutter.repo_name }}
+	sphinx-apidoc -o docs/ {{ cookiecutter.package_name }}
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	xdg-open docs/_build/html/index.html

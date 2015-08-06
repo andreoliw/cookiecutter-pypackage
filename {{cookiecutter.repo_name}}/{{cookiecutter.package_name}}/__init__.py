@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Main module for {{ cookiecutter.repo_name }}."""
+"""Main module for {{ cookiecutter.package_name }}."""
 
 __author__ = '{{ cookiecutter.full_name }}'
 __email__ = '{{ cookiecutter.email }}'
