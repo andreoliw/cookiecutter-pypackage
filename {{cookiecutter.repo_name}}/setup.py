@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import {{ cookiecutter.package_name }}
 
-
 try:
     from setuptools import setup, Command
 except ImportError:

@@ -5,7 +5,7 @@ help:
 	@echo "clean-build - remove build artifacts"
 	@echo "clean-pyc - remove Python file artifacts"
 	@echo "clean-test - remove test and coverage artifacts"
-	@echo "lint - check style with flake8, pep257 and pylint"
+	@echo "lint - check style with isort, flake8, pep257 and pylint"
 	@echo "lt - lint and test"
 	@echo "ltd - lint, test and docs"
 	@echo "test - run tests quickly with the default Python"
@@ -38,6 +38,7 @@ clean-test:
 	rm -fr htmlcov/
 
 lint:
+	isort --recursive *.py {{ cookiecutter.package_name }} tests
 	flake8 {{ cookiecutter.package_name }} tests
 	pep257 {{ cookiecutter.package_name }} tests
 	pylint --rcfile=.pylintrc {{ cookiecutter.package_name }} tests
