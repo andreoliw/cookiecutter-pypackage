@@ -1,7 +1,7 @@
 # Everything the developer needs in addition to the production requirements
 -r prod.txt
 
-cookiecutter==1.0.0
+cookiecutter==2.1.1
 flake8==2.4.1
 ipython==3.2.1
 ipdb==0.8.1
