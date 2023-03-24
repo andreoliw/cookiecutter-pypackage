@@ -3,7 +3,7 @@
 
 cookiecutter==1.0.0
 flake8==2.4.1
-ipython==3.2.1
+ipython==8.10.0
 ipdb==0.8.1
 isort==4.0.0
 pep257==0.6.0
